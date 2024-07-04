@@ -1,4 +1,4 @@
-# Stock Trader Project
+# TradeWise
 
 ## Overview
 
