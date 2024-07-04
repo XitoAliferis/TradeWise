@@ -117,8 +117,8 @@ The primary goal of this project is to use comprehensive data analysis and machi
 
 ## Example Data
 please refer to the files below
-[data_files/top_10_worst_stocks.csv](data_files/top_10_worst_stocks.csv).
-[data_files/top_10_best_stocks.csv](data_files/top_10_best_stocks.csv).
+ - [worst stocks](data_files/top_10_worst_stocks.csv).
+ - [best stocks](data_files/top_10_best_stocks.csv).
 
 ### License
 This project is licensed under the MIT License.
