@@ -54,6 +54,7 @@ Key Steps:
  - Data Balancing: Balances the dataset using SMOTE (Synthetic Minority Over-sampling Technique) to address class imbalance.
  - Normalization: Scales the features using StandardScaler.
  - Saving Data: Saves the processed data to data_files/merged_data_with_indicators.csv.
+ 
 Technical Indicators and Their Importance:
 
  - Moving Averages (MA): Smoothens price data to identify trends. Common types include simple moving average (SMA) and exponential moving average (EMA).
