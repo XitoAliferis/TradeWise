@@ -104,12 +104,13 @@ Key Steps:
  - Predictions: Makes predictions and computes confidence scores.
  - Output: Identifies and outputs the top 10 best and worst stocks based on prediction confidence.
  - Saving Results: Saves the final predictions to data_files/final_stock_ratings_new.csv.
+
 Machine Learning Model:
- - Neural Network: A sequential neural network model is used for multi-class classification (Buy, Hold, Sell).
- - Layers: The model includes multiple dense layers with ReLU activation and a softmax output layer for classification.
- - Optimizer: Adam optimizer is used for training.
- - Loss Function: Sparse categorical crossentropy is used as the loss function.
- - Regularization: Dropout layers are included to prevent overfitting.
+- Neural Network: A sequential neural network model is used for multi-class classification (Buy, Hold, Sell).
+  - Layers: The model includes multiple dense layers with ReLU activation and a softmax output layer for classification.
+  - Optimizer: Adam optimizer is used for training.
+  - Loss Function: Sparse categorical crossentropy is used as the loss function.
+  - Regularization: Dropout layers are included to prevent overfitting.
 
 ### Goal
 The primary goal of this project is to use comprehensive data analysis and machine learning techniques to identify the top 10 stocks for buying and selling over a one-week period, providing actionable insights for traders.
