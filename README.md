@@ -48,16 +48,16 @@ This script analyzes historical stock prices using technical indicators and prep
 
 Key Steps:
 
--Data Collection: Downloads historical price data for each ticker using the Yahoo Finance API.
--Technical Indicators: Computes various technical indicators such as moving averages (MA), relative strength index (RSI), moving average convergence divergence (MACD), and more.
--Feature Engineering: Prepares features and targets for machine learning by combining technical indicators.
--Data Balancing: Balances the dataset using SMOTE (Synthetic Minority Over-sampling Technique) to address class imbalance.
--Normalization: Scales the features using StandardScaler.
--Saving Data: Saves the processed data to data_files/merged_data_with_indicators.csv.
+ - Data Collection: Downloads historical price data for each ticker using the Yahoo Finance API.
+ - Technical Indicators: Computes various technical indicators such as moving averages (MA), relative strength index (RSI), moving average convergence divergence (MACD), and more.
+ - Feature Engineering: Prepares features and targets for machine learning by combining technical indicators.
+ - Data Balancing: Balances the dataset using SMOTE (Synthetic Minority Over-sampling Technique) to address class imbalance.
+ - Normalization: Scales the features using StandardScaler.
+ - Saving Data: Saves the processed data to data_files/merged_data_with_indicators.csv.
 Technical Indicators and Their Importance:
 
--Moving Averages (MA): Smoothens price data to identify trends. Common types include simple moving average (SMA) and exponential moving average (EMA).
--Relative Strength Index (RSI): Measures the magnitude of recent price changes to evaluate overbought or oversold conditions.
--Moving Average Convergence Divergence (MACD): Indicates trend direction and strength by comparing short-term and long-term EMAs.
--Bollinger Bands: Measures price volatility by plotting bands a certain number of standard deviations away from a moving average.
+ - Moving Averages (MA): Smoothens price data to identify trends. Common types include simple moving average (SMA) and exponential moving average (EMA).
+ - Relative Strength Index (RSI): Measures the magnitude of recent price changes to evaluate overbought or oversold conditions.
+ - Moving Average Convergence Divergence (MACD): Indicates trend direction and strength by comparing short-term and long-term EMAs.
+ - Bollinger Bands: Measures price volatility by plotting bands a certain number of standard deviations away from a moving average.
 ###3. Analyze Stock News
