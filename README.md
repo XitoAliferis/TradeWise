@@ -4,6 +4,10 @@
 
 The Stock Trader project leverages machine learning to identify the top 10 stocks to buy and sell over a one-week period. The project is structured into five main scripts, each handling a crucial part of the data processing and analysis workflow. The final output provides actionable insights for traders by analyzing stock tickers, prices, news, and analyst opinions.
 
+## Google Sheet 
+
+This shows choice from previous runs and what the outcome was based off the price 1 week later
+ - [history](https://docs.google.com/spreadsheets/d/1RSpStVAhkKcI8T9QOmz3OHmUel3v7_7ZYwCgVprjmGw/edit?usp=sharing)
 ## Prerequisites
 
 - Python 3.x
