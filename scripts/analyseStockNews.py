@@ -5,7 +5,7 @@ import aiohttp
 import asyncio
 from tqdm.asyncio import tqdm_asyncio
 import os
-
+from bs4 import BeautifulSoup
 # Function to fetch Google News RSS feed using feedparser
 def fetch_news_data_rss(ticker):
     rss_url = f'https://news.google.com/rss/search?q={ticker}&hl=en-US&gl=US&ceid=US:en'
@@ -13,8 +13,11 @@ def fetch_news_data_rss(ticker):
     headlines = []
     summaries = []
     for entry in feed.entries:
+        # Parse the description to extract the actual text
+        soup = BeautifulSoup(entry.description, 'html.parser')
+        description = soup.get_text()
         headlines.append(entry.title)
-        summaries.append(entry.summary)
+        summaries.append(description)
     return headlines, summaries
 
 # Function to fetch Reddit data using aiohttp
@@ -35,7 +38,7 @@ async def fetch_reddit_data(session, ticker):
                         title = item.find('h3').get_text()
                         content = item.find('div', {'class': 'search-result-text'}).get_text()
                         posts.append(title + " " + content)
-                    return posts[:20]
+                    return posts
         except Exception as e:
             print(f"Error fetching Reddit data for {ticker}, attempt {attempt + 1}: {e}")
             await asyncio.sleep(1)

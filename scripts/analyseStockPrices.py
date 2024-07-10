@@ -28,12 +28,12 @@ file_path = './data_files/top_1000_tickers_by_market_cap.txt'
 df_tickers = pd.read_csv(file_path)
 tickers = df_tickers['Ticker'].tolist() # Only take the first 2 tickers for now
 
-# Fetch historical data for the past 5 years
+# Fetch historical data for the past 1mo
 def fetch_historical_data(tickers):
     historical_data = {}
     for ticker in tqdm(tickers, desc="Fetching historical data"):
         stock = yf.Ticker(ticker)
-        hist = stock.history(period="1mo")
+        hist = stock.history(period="6mo")
         if not hist.empty:
             historical_data[ticker] = hist
         else:
@@ -41,7 +41,6 @@ def fetch_historical_data(tickers):
     return historical_data
 
 historical_data = fetch_historical_data(tickers)
-
 # Preprocess data
 def preprocess_data(historical_data):
     processed_data = []
@@ -52,6 +51,7 @@ def preprocess_data(historical_data):
 
 processed_data = preprocess_data(historical_data)
 print(f"Processed data for tickers: {processed_data['Ticker'].unique()}")
+print(processed_data.head())  # Debug: Show the head of processed data
 
 # Add more features
 def add_features(df):
@@ -69,6 +69,7 @@ def add_features(df):
     return df
 
 processed_data = add_features(processed_data)
+print(processed_data.head())  # Debug: Show the head after adding features
 
 # Check for and handle NaN, inf values
 def clean_data(df):
@@ -77,6 +78,7 @@ def clean_data(df):
     return df
 
 processed_data = clean_data(processed_data)
+print(processed_data.head())  # Debug: Show the head after cleaning data
 
 # Prepare the data for training
 def prepare_training_data(df):
@@ -88,6 +90,13 @@ def prepare_training_data(df):
     return X, y, tickers
 
 X, y, tickers_array = prepare_training_data(processed_data)
+
+# Debug statements to check the shapes of X and y
+print(f"Shape of X: {X.shape}")
+print(f"Shape of y: {y.shape}")
+
+if X.shape[0] == 0:
+    raise ValueError("No data available after preprocessing and feature engineering.")
 
 # Analyze the distribution of classes
 unique, counts = np.unique(y, return_counts=True)
@@ -111,6 +120,8 @@ accuracies = []
 
 # Early stopping callback
 early_stopping = EarlyStopping(monitor='val_accuracy', patience=3, restore_best_weights=True, mode='max', verbose=1)
+
+
 
 # Build a simpler classification model
 def build_simple_classification_model(hp):
