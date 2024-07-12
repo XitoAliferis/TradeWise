@@ -97,7 +97,7 @@ async def process_all_tickers(tickers):
 
 if __name__ == '__main__':
     # Load the stock list from your file
-    file_path = './data_files/top_1000_tickers_by_market_cap.txt'
+    file_path = './data_files/tickers_sorted_by_market_cap.txt'
     df_tickers = pd.read_csv(file_path)
     tickers = df_tickers['Ticker'].tolist()
     

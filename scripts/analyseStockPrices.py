@@ -18,26 +18,41 @@ from tensorflow.keras.mixed_precision import set_global_policy, Policy
 from sklearn.utils import class_weight
 import matplotlib.pyplot as plt
 from sklearn.metrics import roc_curve
+import concurrent.futures
 
 # Enable mixed precision training
 policy = Policy('mixed_float16')
 set_global_policy(policy)
 
 # Load the stock list from your file
-file_path = './data_files/top_1000_tickers_by_market_cap.txt'
+file_path = './data_files/tickers_sorted_by_market_cap.txt'
 df_tickers = pd.read_csv(file_path)
-tickers = df_tickers['Ticker'].tolist() # Only take the first 2 tickers for now
+tickers = df_tickers['Ticker'].tolist() 
 
-# Fetch historical data for the past 1mo
-def fetch_historical_data(tickers):
-    historical_data = {}
-    for ticker in tqdm(tickers, desc="Fetching historical data"):
-        stock = yf.Ticker(ticker)
-        hist = stock.history(period="6mo")
+# Function to fetch data for a single ticker
+def fetch_ticker_data(ticker):
+    ticker = str(ticker)  # Convert ticker to string
+    stock = yf.Ticker(ticker)
+    try:
+        hist = stock.history(period="ytd")
         if not hist.empty:
-            historical_data[ticker] = hist
+            return ticker, hist
         else:
             print(f"Warning: No data fetched for ticker {ticker}")
+            return ticker, None
+    except Exception as e:
+        print(f"Error fetching data for ticker {ticker}: {e}")
+        return ticker, None
+
+# Fetch historical data using ThreadPoolExecutor
+def fetch_historical_data(tickers):
+    historical_data = {}
+    with concurrent.futures.ThreadPoolExecutor() as executor:
+        future_to_ticker = {executor.submit(fetch_ticker_data, ticker): ticker for ticker in tickers}
+        for future in tqdm(concurrent.futures.as_completed(future_to_ticker), total=len(tickers), desc="Fetching historical data"):
+            ticker, data = future.result()
+            if data is not None:
+                historical_data[ticker] = data
     return historical_data
 
 historical_data = fetch_historical_data(tickers)
