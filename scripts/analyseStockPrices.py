@@ -34,7 +34,7 @@ def fetch_ticker_data(ticker):
     ticker = str(ticker)  # Convert ticker to string
     stock = yf.Ticker(ticker)
     try:
-        hist = stock.history(period="ytd")
+        hist = stock.history(period="1y")
         if not hist.empty:
             return ticker, hist
         else:
@@ -112,14 +112,6 @@ print(f"Shape of y: {y.shape}")
 
 if X.shape[0] == 0:
     raise ValueError("No data available after preprocessing and feature engineering.")
-
-# Analyze the distribution of classes
-unique, counts = np.unique(y, return_counts=True)
-plt.bar(unique, counts)
-plt.xlabel('Class')
-plt.ylabel('Frequency')
-plt.title('Class Distribution')
-plt.show()
 
 # Scale features
 scaler_X = StandardScaler()
