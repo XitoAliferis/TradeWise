@@ -1,6 +1,9 @@
 import pandas as pd
 import yfinance as yf
 import os
+import getStockTickers
+
+getStockTickers
 # Function to fetch analyst recommendations using yfinance
 def fetch_analyst_recommendations(ticker):
     try:

@@ -1,18 +1,13 @@
 import pandas as pd
 import numpy as np
 import analyseStockPrices
-import analyseStockNews
-import analyseStockAnalysts
+
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense
 from tensorflow.keras.utils import to_categorical
 from sklearn.preprocessing import StandardScaler
 
 analyseStockPrices
-
-analyseStockNews
-
-analyseStockAnalysts
 
 # Load the data from the three different analyses
 analyst_data = pd.read_csv('./data_files/analyst_ratings.csv')

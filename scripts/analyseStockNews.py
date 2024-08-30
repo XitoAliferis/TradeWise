@@ -6,6 +6,10 @@ import asyncio
 from tqdm.asyncio import tqdm_asyncio
 import os
 from bs4 import BeautifulSoup
+import analyseStockAnalysts
+
+analyseStockAnalysts
+
 # Function to fetch Google News RSS feed using feedparser
 def fetch_news_data_rss(ticker):
     rss_url = f'https://news.google.com/rss/search?q={ticker}&hl=en-US&gl=US&ceid=US:en'

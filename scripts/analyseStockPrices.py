@@ -19,6 +19,9 @@ from sklearn.utils import class_weight
 import matplotlib.pyplot as plt
 from sklearn.metrics import roc_curve
 import concurrent.futures
+import analyseStockNews
+
+analyseStockNews
 
 # Enable mixed precision training
 policy = Policy('mixed_float16')
